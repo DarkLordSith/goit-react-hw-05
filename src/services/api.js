@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const API_KEY = "YOUR_API_KEY";
+const API_KEY =
+  "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkMjA3MzU4NmMyYTJjNGRhNjM3ZjRlMDlkOWFlNjUzOSIsIm5iZiI6MTczNjAwMjQ5OS44NzY5OTk5LCJzdWIiOiI2Nzc5NGJjM2MxMWVlNjFkZDg3NGRhYWMiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.alx1HlTzAXjlTam4qMF4hOC3BNkaRdsoq_s5QU7yehM";
 const BASE_URL = "https://api.themoviedb.org/3";
 
 const options = {

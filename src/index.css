@@ -1,25 +1,85 @@
-body {
-  font-family: sans-serif;
-  line-height: 1.5;
+/* Скидання стилів браузера */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p {
-  margin: 0;
+body {
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  color: #212529;
+  background-color: #f9f9f9;
+  line-height: 1.6;
 }
 
 ul,
 ol {
   margin: 0;
   padding: 0;
+  list-style: none;
+}
+
+/* Заголовки */
+h1,
+h2,
+h3 {
+  font-weight: 600;
+  color: #212529;
+  text-align: center;
+}
+
+/* Кнопки */
+button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  background-color: #007bff;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Лінки */
+a {
+  color: #007bff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #0056b3;
 }
 
 img {
   display: block;
   max-width: 100%;
+}
+
+/* Flex */
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Grid */
+.grid {
+  display: grid;
+  gap: 20px;
+}
+
+/* Адаптивність */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 12px;
+  }
 }

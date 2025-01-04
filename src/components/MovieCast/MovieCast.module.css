@@ -1,0 +1,28 @@
+/* Контейнер для акторів */
+.list {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 15px;
+  overflow-x: auto;
+  padding: 10px 0;
+}
+
+/* Картка актора */
+.actor {
+  text-align: center;
+  width: 120px;
+}
+
+/* Зображення актора */
+.actorImage {
+  width: 100px;
+  height: 150px;
+  border-radius: 8px;
+}
+
+/* Ім'я актора */
+.actorName {
+  margin-top: 5px;
+  font-size: 14px;
+  font-weight: 500;
+}

@@ -6,28 +6,47 @@ import styles from "./MoviesPage.module.css";
 
 const MoviesPage = () => {
   const [movies, setMovies] = useState([]);
+  const [query, setQuery] = useState("");
   const [searchParams, setSearchParams] = useSearchParams();
-  const query = searchParams.get("query") || "";
+
+  const queryParam = searchParams.get("query") || "";
 
   useEffect(() => {
-    if (!query) return;
-    fetchMoviesByQuery(query).then(setMovies);
-  }, [query]);
+    if (!queryParam) return;
+    setQuery(queryParam);
+    fetchMoviesByQuery(queryParam)
+      .then(setMovies)
+      .catch((error) => console.error("Error fetching movies:", error));
+  }, [queryParam]);
+
+  const handleChange = (event) => {
+    setQuery(event.target.value);
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const value = event.target.elements.query.value.trim();
-    if (!value) return;
-    setSearchParams({ query: value });
+    const trimmedQuery = query.trim();
+    if (!trimmedQuery) return;
+    setSearchParams({ query: trimmedQuery });
   };
 
   return (
     <div className={styles.container}>
       <form onSubmit={handleSubmit} className={styles.form}>
-        <input type="text" name="query" placeholder="Search movies" />
+        <input
+          type="text"
+          name="query"
+          placeholder="Search movies..."
+          value={query}
+          onChange={handleChange}
+        />
         <button type="submit">Search</button>
       </form>
-      <MovieList movies={movies} />
+      {movies.length > 0 ? (
+        <MovieList movies={movies} />
+      ) : (
+        <p className={styles.noMovies}>No movies found. Try another query!</p>
+      )}
     </div>
   );
 };

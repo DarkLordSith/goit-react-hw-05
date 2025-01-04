@@ -17,28 +17,47 @@ const MovieDetailsPage = () => {
 
   return (
     <div className={styles.container}>
+      {/* Кнопка повернення назад */}
       <Link to={backLink.current} className={styles.backButton}>
         Go back
       </Link>
-      <h2>{movie.title}</h2>
-      <p>{movie.overview}</p>
-      <img
-        src={
-          movie.poster_path
-            ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
-            : "https://via.placeholder.com/150"
-        }
-        alt={movie.title}
-      />
+
+      {/* Контейнер для постера і опису */}
+      <div className={styles.movieDetails}>
+        {/* Постер */}
+        <img
+          className={styles.poster}
+          src={
+            movie.poster_path
+              ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
+              : "https://via.placeholder.com/300x450"
+          }
+          alt={movie.title}
+        />
+
+        {/* Інформація про фільм */}
+        <div className={styles.info}>
+          <h2 className={styles.title}>{movie.title}</h2>
+          <p className={styles.description}>{movie.overview}</p>
+        </div>
+      </div>
+
+      {/* Додаткова інформація */}
       <h3>Additional Information:</h3>
-      <ul>
+      <ul className={styles.links}>
         <li>
-          <Link to="cast">Cast</Link>
+          <Link to="cast" className={styles.link}>
+            Cast
+          </Link>
         </li>
         <li>
-          <Link to="reviews">Reviews</Link>
+          <Link to="reviews" className={styles.link}>
+            Reviews
+          </Link>
         </li>
       </ul>
+
+      {/* Вкладені маршрути */}
       <Outlet />
     </div>
   );

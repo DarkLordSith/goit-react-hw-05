@@ -3,20 +3,19 @@ import styles from "./MovieList.module.css";
 
 const MovieList = ({ movies }) => {
   return (
-    <ul className={styles.list}>
-      {movies.map(({ id, title, poster_path }) => (
-        <li key={id} className={styles.item}>
-          <Link to={`/movies/${id}`}>
+    <ul className={styles.grid}>
+      {movies.map((movie) => (
+        <li key={movie.id} className={styles.card}>
+          <Link to={`/movies/${movie.id}`}>
             <img
               src={
-                poster_path
-                  ? `https://image.tmdb.org/t/p/w500/${poster_path}`
-                  : "https://via.placeholder.com/150"
+                movie.poster_path
+                  ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
+                  : "https://via.placeholder.com/200x300"
               }
-              alt={title}
-              className={styles.image}
+              alt={movie.title}
             />
-            <p>{title}</p>
+            <h3>{movie.title}</h3>
           </Link>
         </li>
       ))}
