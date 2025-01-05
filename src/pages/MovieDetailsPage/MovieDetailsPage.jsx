@@ -47,7 +47,7 @@ const MovieDetailsPage = () => {
         />
 
         <div className={styles.info}>
-          <h2 className={styles.title}>{movie.title}</h2>
+          <h2 className={styles.title}>"{movie.title}"</h2>
           <p className={styles.description}>{movie.overview}</p>
         </div>
       </div>
