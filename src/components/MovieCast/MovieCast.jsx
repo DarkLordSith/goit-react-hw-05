@@ -12,25 +12,23 @@ const MovieCast = () => {
   }, [movieId]);
 
   return (
-    <div className={styles.castContainer}>
-      <ul className={styles.castList}>
-        {cast.map(({ id, name, profile_path, character }) => (
-          <li key={id} className={styles.actor}>
-            <img
-              src={
-                profile_path
-                  ? `https://image.tmdb.org/t/p/w500/${profile_path}`
-                  : "https://via.placeholder.com/150"
-              }
-              alt={name}
-              className={styles.actorImage}
-            />
-            <p className={styles.actorName}>{name}</p>
-            <p>Character: {character}</p>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <ul className={styles.castList}>
+      {cast.map(({ id, name, profile_path, character }) => (
+        <li key={id} className={styles.actor}>
+          <img
+            src={
+              profile_path
+                ? `https://image.tmdb.org/t/p/w500/${profile_path}`
+                : "https://via.placeholder.com/150"
+            }
+            alt={name}
+            className={styles.actorImage}
+          />
+          <p className={styles.actorName}>{name}</p>
+          <p className={styles.actorCharacter}>Character: {character}</p>
+        </li>
+      ))}
+    </ul>
   );
 };
 

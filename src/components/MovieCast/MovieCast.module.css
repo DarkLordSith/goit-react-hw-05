@@ -1,31 +1,20 @@
-/* Контейнер для списку акторів */
-.castContainer {
-  width: 100%;
-  height: 300px; /* Фіксована висота контейнера */
-  overflow-y: auto; /* Прокручування по вертикалі */
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 10px;
-  background-color: #f9f9f9;
-}
-
-/* Список акторів */
 .castList {
   display: flex;
-  flex-wrap: wrap; /* Переносимо елементи, якщо не вміщуються */
+  flex-wrap: wrap;
   gap: 15px;
   padding: 0;
   margin: 0;
   list-style: none;
 }
 
-/* Картка актора */
 .actor {
-  flex: 0 1 calc(20% - 15px); /* Максимум 5 акторів в рядок */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 0 1 calc(20% - 15px);
   text-align: center;
 }
 
-/* Зображення актора */
 .actorImage {
   width: 100px;
   height: 150px;
@@ -33,22 +22,25 @@
   object-fit: cover;
 }
 
-/* Ім'я актора */
 .actorName {
   margin-top: 5px;
   font-size: 14px;
   font-weight: 500;
 }
 
-/* Додаємо прокручування, якщо акторів багато */
+.actorCharacter {
+  font-size: 12px;
+  font-weight: 300;
+}
+
 @media (max-width: 768px) {
   .actor {
-    flex: 0 1 calc(33.33% - 15px); /* 3 актори в рядок для планшетів */
+    flex: 0 1 calc(33.33% - 15px);
   }
 }
 
 @media (max-width: 480px) {
   .actor {
-    flex: 0 1 calc(50% - 15px); /* 2 актори в рядок для мобільних */
+    flex: 0 1 calc(50% - 15px);
   }
 }

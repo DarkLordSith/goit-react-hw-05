@@ -2,29 +2,40 @@ import { useState, useEffect, useRef } from "react";
 import { useParams, useLocation, Link, Outlet } from "react-router-dom";
 import { fetchMovieDetails } from "../../services/api";
 import styles from "./MovieDetailsPage.module.css";
+import NotFoundPage from "../NotFoundPage/NotFoundPage";
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
   const location = useLocation();
   const backLink = useRef(location.state?.from || "/movies");
   const [movie, setMovie] = useState(null);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
-    fetchMovieDetails(movieId).then(setMovie);
+    const loadMovie = async () => {
+      try {
+        const movieData = await fetchMovieDetails(movieId);
+        setMovie(movieData);
+      } catch (error) {
+        setError(true);
+      }
+    };
+    loadMovie();
   }, [movieId]);
+
+  if (error) {
+    return <NotFoundPage />;
+  }
 
   if (!movie) return null;
 
   return (
     <div className={styles.container}>
-      {/* Кнопка повернення назад */}
       <Link to={backLink.current} className={styles.backButton}>
         Go back
       </Link>
 
-      {/* Контейнер для постера і опису */}
       <div className={styles.movieDetails}>
-        {/* Постер */}
         <img
           className={styles.poster}
           src={
@@ -35,14 +46,12 @@ const MovieDetailsPage = () => {
           alt={movie.title}
         />
 
-        {/* Інформація про фільм */}
         <div className={styles.info}>
           <h2 className={styles.title}>{movie.title}</h2>
           <p className={styles.description}>{movie.overview}</p>
         </div>
       </div>
 
-      {/* Додаткова інформація */}
       <h3>Additional Information:</h3>
       <ul className={styles.links}>
         <li>
@@ -57,7 +66,6 @@ const MovieDetailsPage = () => {
         </li>
       </ul>
 
-      {/* Вкладені маршрути */}
       <Outlet />
     </div>
   );
