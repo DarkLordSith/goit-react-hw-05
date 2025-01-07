@@ -18,32 +18,28 @@ const MoviesPage = () => {
     fetchMoviesByQuery(queryParam)
       .then((data) => {
         if (data.length === 0) {
-          toast.error("No movies found. Try another query!"); // Повідомлення, якщо фільмів немає
+          toast.error("No movies found. Try another query!");
         }
         setMovies(data);
       })
       .catch(() => {
-        toast.error("Failed to fetch movies. Please try again later."); // Повідомлення при помилці
+        toast.error("Failed to fetch movies. Please try again later.");
       });
   }, [queryParam]);
 
-  // Обробник зміни в полі введення
   const handleChange = (event) => {
     setQuery(event.target.value);
   };
 
-  // Сабміт форми
   const handleSubmit = (event) => {
     event.preventDefault();
     const trimmedQuery = query.trim();
 
-    // Перевірка на порожній інпут
     if (!trimmedQuery) {
-      toast.error("Please enter a search query!"); // Повідомлення, якщо поле порожнє
+      toast.error("Please enter a search query!");
       return;
     }
 
-    // Записуємо запит у параметри рядка
     setSearchParams({ query: trimmedQuery });
   };
 
